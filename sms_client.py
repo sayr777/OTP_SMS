@@ -9,6 +9,7 @@ import os
 # SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 # SERV_PORT = os.environ.get('SERV_PORT')    # порт
 SERV_HOST = '51.250.76.244'
+# SERV_HOST = 'localhost'
 SERV_PORT = 9091
 
 # Генерация OTP
@@ -45,4 +46,4 @@ def rec_otp (SERV_HOST, SERV_PORT, OTP_SMS, PHONE_NUM):
     return data.decode()[-4:]
 
 
-print(rec_otp (SERV_HOST, SERV_PORT, generate_OTP(),'79162071746'))
+print(rec_otp (SERV_HOST, SERV_PORT, generate_OTP(),'79636959792'))

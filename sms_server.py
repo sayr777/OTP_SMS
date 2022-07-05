@@ -2,13 +2,14 @@
 import socket
 import os
 import dotenv
+import time
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
-import smsc
+from smsc import SMSC
 
 SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 SERV_PORT = os.environ.get('SERV_PORT')    # порт сервера
-
+# SERV_HOST = 'localhost'
 # создаемTCP/IP сокет
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -34,15 +35,7 @@ while True:
                 data = data.upper()
                 print(f'Отправка обратно клиенту : {data}')
                 connection.sendall(data)
-                try:
-                    smsc = smsc.SMSC()
-                except AttributeError as err:
-                    print(f"Unexpected {err=}, {type(err)=}")
-                    break
 
-                message = data.decode('utf8')[-4:] + ' - код подтверждения телефона для МП "Умная рыбалка"'
-                # print(data.decode('utf8')[-4:])
-                smsc.send_sms(data[:11], message, sender="Center")
                 break
             else:
                 print('Нет данных от:', client_address)
@@ -51,3 +44,14 @@ while True:
     finally:
         # Очищаем соединение
         connection.close()
+
+    time.sleep(5)
+    try:
+        smsc = SMSC()
+    except AttributeError as err:
+        print(f"Unexpected {err=}, {type(err)=}")
+        # break
+
+    message = data.decode('utf8')[-4:] + ' - код подтверждения телефона для МП "Умная рыбалка"'
+    # print(data.decode('utf8')[-4:])
+    smsc.send_sms(data[:11], message, sender='')

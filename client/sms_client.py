@@ -3,7 +3,7 @@ import socket
 import pyotp
 import os
 import dotenv
-dotenv_path = os.path.join(os.path.dirname(__file__), '../server/.env')
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
 
 SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
@@ -19,7 +19,10 @@ def rec_otp (SERV_HOST, SERV_PORT, OTP_SMS, PHONE_NUM):
     # СоздаемTCP/IP сокет
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # Подключаем сокет к порту, через который прослушивается сервер
-    server_address = (str(SERV_HOST), int(SERV_PORT))
+    # server_address = (str(SERV_HOST), int(SERV_PORT))
+    # SERV_HOST = 51.250.76.244
+    # SERV_PORT = '9091'
+    server_address = ('51.250.76.244', 9091)
     print('Подключено к {} порт {}'.format(*server_address))
     sock.connect(server_address)
     try:

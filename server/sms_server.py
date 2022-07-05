@@ -34,7 +34,12 @@ while True:
                 data = data.upper()
                 print(f'Отправка обратно клиенту : {data}')
                 connection.sendall(data)
-                smsc = smsc.SMSC()
+                try:
+                    smsc = smsc.SMSC()
+                except AttributeError as err:
+                    print(f"Unexpected {err=}, {type(err)=}")
+                    break
+
                 message = data.decode('utf8')[-4:] + ' - код подтверждения телефона для МП "Умная рыбалка"'
                 # print(data.decode('utf8')[-4:])
                 smsc.send_sms(data[:11], message, sender="Center")

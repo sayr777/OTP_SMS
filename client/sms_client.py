@@ -8,6 +8,8 @@ import os
 
 # SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 # SERV_PORT = os.environ.get('SERV_PORT')    # порт
+SERV_HOST = '51.250.76.244'
+SERV_PORT = 9091
 
 # Генерация OTP
 def generate_OTP ():
@@ -19,8 +21,7 @@ def rec_otp (SERV_HOST, SERV_PORT, OTP_SMS, PHONE_NUM):
     # СоздаемTCP/IP сокет
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # Подключаем сокет к порту, через который прослушивается сервер
-    SERV_HOST = '51.250.76.244'
-    SERV_PORT = 9091
+
     server_address = (str(SERV_HOST), int(SERV_PORT))
 
 
@@ -44,4 +45,4 @@ def rec_otp (SERV_HOST, SERV_PORT, OTP_SMS, PHONE_NUM):
     return data.decode()[-4:]
 
 
-print(rec_otp (SERV_HOST, SERV_PORT, generate_OTP(),'79636959792'))
+print(rec_otp (SERV_HOST, SERV_PORT, generate_OTP(),'79162071746'))

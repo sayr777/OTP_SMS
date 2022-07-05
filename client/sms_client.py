@@ -2,9 +2,9 @@
 import socket
 import pyotp
 import os
-import dotenv
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
-dotenv.load_dotenv(dotenv_path)
+# import dotenv
+# dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+# dotenv.load_dotenv(dotenv_path)
 
 # SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 # SERV_PORT = os.environ.get('SERV_PORT')    # порт

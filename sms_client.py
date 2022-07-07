@@ -8,7 +8,7 @@ import os
 
 # SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 # SERV_PORT = os.environ.get('SERV_PORT')    # порт
-SERV_HOST = '51.250.76.244'
+SERV_HOST = '51.250.75.79'
 # SERV_HOST = 'localhost'
 SERV_PORT = 9091
 

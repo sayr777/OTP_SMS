@@ -192,7 +192,7 @@ class SMSC(object):
     # Метод вызова запроса. Формирует URL и делает 3 попытки чтения
 
     def _smsc_send_cmd(self, cmd, arg=""):
-        url = ifs(SMSC_HTTPS, "https", "http") + "://www.smsc.ru/sys/" + cmd + ".php"
+        url = ifs(SMSC_HTTPS, "https", "http") + "://smsc.ru/sys/" + cmd + ".php"
         _url = url
         arg = "login=" + quote(SMSC_LOGIN) + "&psw=" + quote(SMSC_PASSWORD) + "&fmt=1&charset=" + SMSC_CHARSET + "&" + arg
 

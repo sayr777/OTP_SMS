@@ -199,7 +199,7 @@ class SMSC(object):
         i = 0
         ret = ""
 
-        while ret == "" and i <= 5:
+        while ret == "" and i <= 3:
             if i > 0:
                 url = _url.replace("smsc.ru/", "www" + str(i) + ".smsc.ru/")
             else:

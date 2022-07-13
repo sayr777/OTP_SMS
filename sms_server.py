@@ -5,11 +5,13 @@ import dotenv
 import time
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
-from smsc import SMSC
 
-# SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
+# SERV_HOST = 'localhost'
+SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 SERV_PORT = os.environ.get('SERV_PORT')    # порт сервера
-SERV_HOST = os.environ.get('SERV_HOST')
+SMSC_LOGIN = os.environ.get('SMSC_LOGIN')
+SMSC_PASSWORD = os.environ.get('SMSC_PASSWORD')
+
 # создаемTCP/IP сокет
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -45,13 +47,17 @@ while True:
         # Очищаем соединение
         connection.close()
 
-    time.sleep(5)
+
     try:
-        smsc = SMSC()
+        pass
     except AttributeError as err:
         print(f"Unexpected {err=}, {type(err)=}")
         # break
 
     message = data.decode('utf8')[-4:] + ' - код подтверждения телефона для МП "Умная рыбалка"'
-    print(message," ", data[:11])
-    smsc.send_sms(data[:11], message, sender='sms')
+
+    attr_curl = 'curl '+"'https://smsc.ru/sys/send.php?login="+SMSC_LOGIN+'&psw='+SMSC_PASSWORD+'&phones='+str(data[:11])+'&mes='+message+"'"
+    print (attr_curl)
+    res = os.system(attr_curl)
+    print (res)
+

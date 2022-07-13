@@ -9,7 +9,7 @@ from smsc import SMSC
 
 # SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 SERV_PORT = os.environ.get('SERV_PORT')    # порт сервера
-SERV_HOST = 'localhost'
+SERV_HOST = os.environ.get('SERV_HOST')
 # создаемTCP/IP сокет
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

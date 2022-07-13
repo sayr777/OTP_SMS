@@ -46,4 +46,4 @@ def rec_otp (SERV_HOST, SERV_PORT, OTP_SMS, PHONE_NUM):
     return data.decode()[-4:]
 
 
-# print(rec_otp (SERV_HOST, SERV_PORT, generate_OTP(),'79636959792'))
+print(rec_otp (SERV_HOST, SERV_PORT, generate_OTP(),'79636959792'))

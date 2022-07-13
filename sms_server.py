@@ -7,9 +7,9 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
 from smsc import SMSC
 
-SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
+# SERV_HOST = os.environ.get('SERV_HOST')    # имя сервера
 SERV_PORT = os.environ.get('SERV_PORT')    # порт сервера
-# SERV_HOST = 'localhost'
+SERV_HOST = 'localhost'
 # создаемTCP/IP сокет
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -53,5 +53,5 @@ while True:
         # break
 
     message = data.decode('utf8')[-4:] + ' - код подтверждения телефона для МП "Умная рыбалка"'
-    # print(data.decode('utf8')[-4:])
-    smsc.send_sms(data[:11], message, sender='')
+    print(message," ", data[:11])
+    smsc.send_sms(data[:11], message, sender='sms')
